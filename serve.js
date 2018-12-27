@@ -14,8 +14,14 @@ MongoClient.connect(url, function(err, db) {
 router.get('/article', async (ctx, next) => {
   await fn.getArticle(ctx, dbo)
 })
+  .post('/login', async (ctx, next) => {
+    await fn.login(ctx,dbo)
+  })
   .post('/article', async (ctx, next) => {
     await fn.setArticle(ctx,dbo)
+  })
+  .post('/register', async (ctx) => {
+    await fn.register(ctx,dbo)
   })
   .get('/title', async (ctx, next) => {
     await fn.getTile(ctx,dbo)

@@ -1,7 +1,7 @@
 const statusCode = {
   "200":"添加成功",
-  "1001": "文章已存在",
-  "1002":"添加失败"
+  "2001": "文章已存在",
+  "2002":"添加失败"
 }
 module.exports = async (ctx, dbo) => {
   ctx.body = ctx.request.body
@@ -18,7 +18,7 @@ module.exports = async (ctx, dbo) => {
   //增加文章
   res = await dbo.collection(type).find({ name: obj.name }).toArray()
   if (res.length) {
-    resObj.code = 1001;
+    resObj.code = 2001;
     resObj.message = obj.name+statusCode['1001'];
     return
   }
@@ -28,7 +28,7 @@ module.exports = async (ctx, dbo) => {
     resObj.message = "添加成功";
   }
   else {
-    resObj.code = 1002;
+    resObj.code = 2002;
     resObj.message = "添加失败";
   }
   ctx.body = resObj;
