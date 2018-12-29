@@ -4,11 +4,13 @@ const getTile = require('./src/getTile')
 const getMark = require('./src/getMark')
 const login = require('./src/login')
 const register = require('./src/register')
-module.exports = fn = {
+const getInfo = require('./src/getInfo')
+module.exports = {
   setArticle,
   getArticle,
   getTile,
   getMark,
   login,
-  register
+  register,
+  getInfo
 }

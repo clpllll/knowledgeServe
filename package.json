@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "crypto-js": "^3.1.9-1",
+    "jwt-simple": "^0.5.5",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",

@@ -1,4 +1,5 @@
 const { decrypt, encrypt } = require('../util/crypto')
+const { setToken } = require('../util/token')
 module.exports = async (ctx, dbo) => {
   const data = ctx.request.body;
   const { name, password } = data;
@@ -11,7 +12,9 @@ module.exports = async (ctx, dbo) => {
     ctx.body = {code:1002,messge:"用户名已存在"}
     return 
   }
-  const add = await dbo.collection("user").insertOne({ userName: name, password: encrypt(decrypt(password)) })
+  const token = setToken({ userName: name, password });
+  const add = await dbo.collection("user").insertOne({ userName: name, password: encrypt(decrypt(password)),token })
   add.code = 0;
+  // add.token = token;
   ctx.body = add;
 }

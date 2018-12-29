@@ -1,4 +1,5 @@
-const { decrypt1, decrypt }=require('../util/crypto')
+const { decrypt1, decrypt } = require('../util/crypto')
+const { setToken } = require('../util/token')
 module.exports = async (ctx, dbo) => {
   const data = ctx.request.body
   const { name, password } = data;
@@ -11,5 +12,11 @@ module.exports = async (ctx, dbo) => {
   ctx.body = {code:1002,messge:"用户名密码错误"}
   return 
   }
-  ctx.body=user[0]
+  const token = setToken({ userName: name, password });
+  const obj = {
+    userName: name,
+    // password,
+    token
+  }
+  ctx.body = obj;
 }
