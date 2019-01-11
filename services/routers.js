@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId  = require('mongodb').ObjectID
 const url = "mongodb://localhost:27017/";
-const { getArticle, login, setArticle, register, getTile, getMark, getInfo } = require('../main');
+const { getArticle, login, setArticle, register, getTile, getMark, getInfo, getCategory, patchArticle } = require('../main');
 let dbo;
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -32,9 +33,15 @@ module.exports = (router) => {
   })
   .get('/mark', async (ctx, next) => {
     await getMark(ctx,dbo)
-   })
-   .get('/info', async (ctx, next) => {
-     await getInfo(ctx,dbo)
-   })
+  })
+  .get('/info', async (ctx, next) => {
+    await getInfo(ctx,dbo)
+  })
+  .get('/category', async (ctx, next) => {
+    await getCategory(ctx,dbo)
+  })
+  .patch('/article', async (ctx, next) => {
+    await patchArticle(ctx,dbo,ObjectId)
+  })
   return router
 }

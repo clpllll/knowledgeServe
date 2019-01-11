@@ -12,9 +12,10 @@ module.exports = async (ctx, dbo) => {
   const type = ctx.body.type
   let res;
   const resObj = {};
+  const newObj = { title: obj.name,category:type }
   //增加分类
-  const title = await dbo.collection("title").find({ title: obj.name }).toArray()
-  if(!title.length)dbo.collection("title").insertOne({title:obj.name})
+  const title = await dbo.collection("title").find(newObj).toArray();
+  if (!title.length) dbo.collection("title").insertOne(newObj);
   //增加文章
   res = await dbo.collection(type).find({ name: obj.name }).toArray()
   if (res.length) {

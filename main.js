@@ -5,6 +5,8 @@ const getMark = require('./src/getMark')
 const login = require('./src/login')
 const register = require('./src/register')
 const getInfo = require('./src/getInfo')
+const getCategory = require('./src/getCategory')
+const patchArticle = require('./src/patchArticle')
 module.exports = {
   setArticle,
   getArticle,
@@ -12,5 +14,7 @@ module.exports = {
   getMark,
   login,
   register,
-  getInfo
+  getInfo,
+  getCategory,
+  patchArticle
 }
