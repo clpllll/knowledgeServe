@@ -1,5 +1,5 @@
-module.exports = async (ctx,dbo) => {
-  const subTitle = await dbo.collection("title").find({}).toArray();
+module.exports = async (ctx) => {
+  const subTitle = await ctx.dbo.collection("title").find({}).toArray();
   const obj = {}
   subTitle.forEach(el => {
     const { category } = el;
@@ -7,8 +7,6 @@ module.exports = async (ctx,dbo) => {
     if (obj[category]) obj[category].push(el)
     else obj[category]=[el]
   });
-  // console.log(obj)
-  // ctx.body = [{ name: 'js', category: 'js' }, { name: "浏览器", category: "browser" }];
-  ctx.body = obj
+  ctx.body = ctx.setStatus(400,obj)
   
 }

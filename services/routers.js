@@ -1,14 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId  = require('mongodb').ObjectID
-const url = "mongodb://localhost:27017/";
+
+const ObjectId = require('mongodb').ObjectID
 const { getArticle, login, setArticle, register, getTile, getMark, getInfo, getCategory, patchArticle } = require('../main');
-let dbo;
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  dbo = db.db("knowledge");
-});
 module.exports = (router) => {
   router.all('/*', (ctx, next) => {
+    // ctx.setStatus = setStatus;]
+    // console.log(ctx.setStatus)
     // console.log(ctx.url)
     // ctx.body = ctx.header
     // ctx.message = "header"
@@ -17,31 +13,31 @@ module.exports = (router) => {
     return next()
   })
   .get('/article', async (ctx, next) => {
-    await getArticle(ctx, dbo)
+    await getArticle(ctx)
   })
   .post('/login', async (ctx, next) => {
-    await login(ctx,dbo)
+    await login(ctx)
   })
   .post('/article', async (ctx, next) => {
-    await setArticle(ctx,dbo)
+    await setArticle(ctx)
   })
   .post('/register', async (ctx) => {
-    await register(ctx,dbo)
+    await register(ctx)
   })
   .get('/title', async (ctx, next) => {
-    await getTile(ctx,dbo)
+    await getTile(ctx)
   })
   .get('/mark', async (ctx, next) => {
-    await getMark(ctx,dbo)
+    await getMark(ctx)
   })
   .get('/info', async (ctx, next) => {
-    await getInfo(ctx,dbo)
+    await getInfo(ctx)
   })
   .get('/category', async (ctx, next) => {
-    await getCategory(ctx,dbo)
+    await getCategory(ctx)
   })
   .patch('/article', async (ctx, next) => {
-    await patchArticle(ctx,dbo,ObjectId)
+    await patchArticle(ctx,ObjectId)
   })
   return router
 }

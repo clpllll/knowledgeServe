@@ -3,7 +3,7 @@ const fs = require('fs');
 // const app = new Koa();
 
 
-module.exports = async (ctx, dbo) => {
+module.exports = async (ctx) => {
   const ff = fs.readFileSync('./JS-ch.md', 'utf-8').toString()
-  await dbo.collection("js").insertOne({name:"text",content:ff})
+  await ctx.dbo.collection("js").insertOne({name:"text",content:ff})
 }

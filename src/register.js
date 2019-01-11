@@ -1,20 +1,18 @@
 const { decrypt, encrypt } = require('../util/crypto')
 const { setToken } = require('../util/token')
-module.exports = async (ctx, dbo) => {
+module.exports = async (ctx) => {
   const data = ctx.request.body;
   const { name, password } = data;
   if (!name || !password) {
-    ctx.body = {code:1001,messge:"用户名密码不能为空"}
+    ctx.body = ctx.setStatus(702)
     return 
   }
-  const user = await dbo.collection("user").find({ userName: name }).toArray()
+  const user = await ctx.dbo.collection("user").find({ userName: name }).toArray()
   if (user.length) {
-    ctx.body = {code:1002,messge:"用户名已存在"}
+    ctx.body = ctx.setStatus(701)
     return 
   }
   const token = setToken({ userName: name, password });
-  const add = await dbo.collection("user").insertOne({ userName: name, password: encrypt(decrypt(password)),token })
-  add.code = 0;
-  // add.token = token;
-  ctx.body = add;
+  const add = await ctx.dbo.collection("user").insertOne({ userName: name, password: encrypt(decrypt(password)),token })
+  ctx.body = ctx.setStatus(700,add);
 }
