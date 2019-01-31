@@ -7,6 +7,8 @@ const register = require('./src/register')
 const getInfo = require('./src/getInfo')
 const getCategory = require('./src/getCategory')
 const patchArticle = require('./src/patchArticle')
+const upload = require('./src/upload')
+const getGeneralities = require('./src/getGeneralities')
 module.exports = {
   setArticle,
   getArticle,
@@ -16,5 +18,7 @@ module.exports = {
   register,
   getInfo,
   getCategory,
-  patchArticle
+  patchArticle,
+  upload,
+  getGeneralities
 }

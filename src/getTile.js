@@ -1,3 +1,4 @@
 module.exports = async (ctx) => {
-  ctx.body = ctx.setStatus(300,await ctx.dbo.collection("title").find({}).toArray())
+  const category = ctx.pUrl.parse(ctx.url).query.replace('category=', '');
+  ctx.body = ctx.setStatus(300,await ctx.dbo.collection(`${category}Title`).find({}).toArray())
 }

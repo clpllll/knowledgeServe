@@ -1,5 +1,6 @@
 module.exports = async (ctx) => {
-  const subTitle = await ctx.dbo.collection("title").find({}).toArray();
+  const category = ctx.pUrl.parse(ctx.url).query.replace('category=', '');
+  const subTitle = await ctx.dbo.collection(`${category}Title`).find({}).toArray();
   const obj = {}
   subTitle.forEach(el => {
     const { category } = el;

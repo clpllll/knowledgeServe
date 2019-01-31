@@ -75,6 +75,14 @@ const obj = {
     code: 801,
     message:"修改文章失败"
   },
+  900: {
+    code: 200,
+    message:"上传成功"
+  },
+  901: {
+    code: 901,
+    message:"上传失败"
+  }
 
 }
 module.exports = (code,data=null) => {
