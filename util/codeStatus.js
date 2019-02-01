@@ -82,6 +82,10 @@ const obj = {
   901: {
     code: 901,
     message:"上传失败"
+  },
+  1000: {
+    code: 200,
+    message:"获取总分类成功"
   }
 
 }
