@@ -1,6 +1,6 @@
 
 const ObjectId = require('mongodb').ObjectID
-const { getArticle, login, setArticle, register, getTile, getMark, getInfo, getCategory, patchArticle,upload,getGeneralities } = require('../main');
+const { getArticle, login, setArticle, register, getTile, getMark, getInfo, getCategory, patchArticle,upload,getGeneralities, getSearch } = require('../main');
 module.exports = (router) => {
   router.all('/*', (ctx, next) => {
     // ctx.setStatus = setStatus;]
@@ -14,6 +14,9 @@ module.exports = (router) => {
   })
   .get('/article', async (ctx, next) => {
     await getArticle(ctx)
+  })
+  .get('/search', async (ctx, next) => {
+    await getSearch(ctx)
   })
   .post('/login', async (ctx, next) => {
     await login(ctx)
@@ -45,5 +48,6 @@ module.exports = (router) => {
   .post('/upload', async (ctx, next) => {
     await upload(ctx)
   })
+  
   return router
 }

@@ -86,6 +86,10 @@ const obj = {
   1000: {
     code: 200,
     message:"获取总分类成功"
+  },
+  1100: {
+    code: 200,
+    message:"查询成功"
   }
 
 }

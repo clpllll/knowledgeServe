@@ -9,6 +9,7 @@ const getCategory = require('./src/getCategory')
 const patchArticle = require('./src/patchArticle')
 const upload = require('./src/upload')
 const getGeneralities = require('./src/getGeneralities')
+const getSearch = require('./src/getSearch')
 module.exports = {
   setArticle,
   getArticle,
@@ -20,5 +21,6 @@ module.exports = {
   getCategory,
   patchArticle,
   upload,
-  getGeneralities
+  getGeneralities,
+  getSearch
 }
